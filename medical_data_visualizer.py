@@ -7,18 +7,12 @@ import numpy as np
 df = pd.read_csv('medical_examination.csv') #  index_col=['id'] 
 
 # 2
-# df['overweight'] = 1 if df['weight'] / np.square(df['height']/100) > 25 else 0 # height to meters
 df['overweight'] = 0 # All values to zero by defualt
 df.loc[df['weight'] / np.square(df['height']/100) > 25, 'overweight'] = 1 # set 1 on those who match the overweight condition
 
 # 3
-# df['cholesterol'] = [0 if chol == 1 else 1 for chol in df['cholesterol']] # ESTE SÍ FUNCIONA
-# df['gluc'] = [0 if gluc == 1 else 1 for gluc in df['gluc']]
-
-df.loc[df['cholesterol'] == 1, 'cholesterol'] = 0 # Assign 0 to people with value 1 of cholesterol
-df.loc[df['cholesterol'] > 1, 'cholesterol'] = 1 # Assign 1 to people with more than value 1 of cholesterol
-df.loc[df['gluc'] == 1, 'gluc'] = 0 # Assign 0 to people with value 1 of gluc
-df.loc[df['gluc'] > 1, 'gluc'] = 1 # Assign 1 to people with more than value 1 of gluc
+df['cholesterol'] = [0 if chol == 1 else 1 for chol in df['cholesterol']]
+df['gluc'] = [0 if gluc == 1 else 1 for gluc in df['gluc']]
 
 # 4
 def draw_cat_plot():
